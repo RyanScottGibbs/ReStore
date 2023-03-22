@@ -1,3 +1,6 @@
+using API.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace API.Entities
 {
     public class Basket
@@ -27,6 +30,20 @@ namespace API.Entities
 
             item.Quantity -= quanity;
             if(item.Quantity == 0) Items.Remove(item);
+        }
+
+        public static async Task<Basket> RetrieveBasket(HttpResponse response, StoreContext contex, string buyerId)
+        {
+            if(string.IsNullOrEmpty(buyerId))
+            {
+                response.Cookies.Delete("buyerId");
+                return null;
+            }
+
+            return await contex.Baskets
+                .Include(i => i.Items)
+                .ThenInclude(p => p.Product)
+                .FirstOrDefaultAsync(x => x.BuyerId == buyerId);
         }
     }
 }
