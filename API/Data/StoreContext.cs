@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using API.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using API.Entities.OrderAggregate;
 
 namespace API.Data
