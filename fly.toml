@@ -1,0 +1,33 @@
+# fly.toml file generated for restoregibbs on 2023-03-26T18:12:36-04:00
+
+app = "restoregibbs"
+kill_signal = "SIGINT"
+kill_timeout = 5
+mounts = []
+primary_region = "bos"
+processes = []
+
+[build]
+  image = "ryanscottgibbs/restore:latest"
+
+[env]
+ASPNETCORE_URLS="http://+:8080"
+StripeSettings__PublishableKey="pk_test_51MoshdJoMiPHbmQX8vj3HLGtM8kQhpydfRhUIvkpMj5M7WeY60dUZWJ8cOp4kQHEpTw2QYR4ATJt7DZEDsBegwek00VueGcoft"
+
+[[services]]
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
