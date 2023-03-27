@@ -13,6 +13,8 @@ processes = []
 [env]
 ASPNETCORE_URLS="http://+:8080"
 StripeSettings__PublishableKey="pk_test_51MoshdJoMiPHbmQX8vj3HLGtM8kQhpydfRhUIvkpMj5M7WeY60dUZWJ8cOp4kQHEpTw2QYR4ATJt7DZEDsBegwek00VueGcoft"
+Cloudinary__CloudName="dibpfgwlg"
+Cloudinary__ApiKey="615519196861238"
 
 [[services]]
   internal_port = 8080
